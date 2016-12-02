@@ -1,0 +1,9 @@
+- [x] initial project structure
+- [ ] webpack + latest typescript build config
+- [ ] add CI integration
+- [ ] add more automation: change log generation, exact-semver, fixpack (?)
+- [ ] render basic table
+- [ ] write an example formal grammar for pegjs
+- [ ] write a simple interpreter (calculator)
+- [ ] write a basic grammar with reactive rules (wat?)
+- [ ] write an interpreter for this shit

@@ -1,0 +1,8 @@
+--ignore-file=ext:svg
+--ignore-file=ext:log
+
+--ignore-directory=is:assets
+--ignore-directory=is:coverage
+--ignore-directory=is:tmp
+--ignore-directory=is:docs
+--ignore-directory=is:dist

@@ -1,0 +1,13 @@
+const path = require('path');
+const chalk = require('chalk');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const combineLoaders = require('webpack-combine-loaders');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const pkg = require('./package');
