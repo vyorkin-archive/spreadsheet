@@ -7,15 +7,20 @@
     "jsx": "react",
     "listFiles": true,
     "removeComments": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noEmitOnError": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "allowJs": true,
     "outDir": "./tmp",
-    "baseUrl": "./src"
+    "baseUrl": "./src/scripts",
+    "types": [
+      "webpack-env"
+    ]
   },
   "exclude": [
+    "tmp",
     "dist",
     "node_modules"
   ],

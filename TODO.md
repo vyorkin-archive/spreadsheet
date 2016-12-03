@@ -1,5 +1,6 @@
 - [x] initial project structure
-- [ ] webpack + latest typescript build config
+- [x] fuck playground, speedup!
+- [x] webpack + latest typescript build config
 - [ ] add CI integration
 - [ ] add more automation: change log generation, exact-semver, fixpack (?)
 - [ ] render basic table

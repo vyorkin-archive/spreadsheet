@@ -7,6 +7,8 @@ clean:
 lint:
 	npm run lint --silent
 
+dll:
+	npm run build:dll
 build:
 	npm run clean
 	npm run build
