@@ -114,7 +114,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "clean": "del 'dist/*' '!dist/*-manifest.json' '!dist/vendor.dll.js' '!dist/icons-*'",
+    "clean": "del 'dist/*' '!dist/*-manifest.json' '!dist/vendor.dll.*' '!dist/icons-*'",
     "postinstall": "npm-run-all --parallel build:dll tcm",
     "prebuild": "npm run clean",
     "build:dll": "NODE_ENV=production webpack --env.production --config webpack.dll.config.js",

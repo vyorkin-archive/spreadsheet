@@ -85,7 +85,9 @@ module.exports = env => {
     },
     output: {
       filename: ifEnv('production', '[name].[chunkhash].js', '[name].js'),
-      path: resolve(__dirname, 'dist'),
+      chunkFilename: '[name].chunk.js',
+      sourceMapFilename: ifEnv('staging', '[file].[has].js.map', '[file].js.map'),
+      path: resolve('dist'),
       publicPath: '',
       pathinfo: !env.production,
     },
@@ -95,21 +97,24 @@ module.exports = env => {
       ifEnv('staging', '#source-map', false),
       '#inline-eval-cheap-source-map'
     ),
-    bail: env.production,
+    bail: ifEnv(['production', 'staging'], true, false),
     resolve: {
       modules: [
         paths.scripts,
         'node_modules',
       ],
       extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-      alias: { assets: paths.assets },
+      alias: {
+        assets: paths.assets,
+        components: join(paths.scripts, 'components'),
+      },
     },
     module: {
       rules: [
         {
           test: /\.jsx?$/,
           enforce: 'pre',
-          loaders: 'source-map',
+          loaders: ['eslint', 'source-map'],
         },
         {
           test: /\.tsx?$/,
@@ -185,7 +190,7 @@ module.exports = env => {
     },
     plugins: compact([
       ifEnv('development', () => new webpack.DllReferencePlugin({
-        context: resolve(__dirname, 'dist'),
+        context: resolve('dist'),
         manifest: require('./dist/vendor-manifest'), // eslint-disable-line global-require
       })),
       new HtmlWebpackPlugin({
@@ -194,7 +199,7 @@ module.exports = env => {
       }),
       ifEnv('development', () => new AddAssetHtmlPlugin({
         filepath: require.resolve('./dist/vendor.dll'),
-        includeSourcemap: ifEnv(['development', 'staging'], true),
+        includeSourcemap: ifEnv(['development', 'staging'], true, false),
       })),
       new ProgressBarPlugin({
         width: 12,
