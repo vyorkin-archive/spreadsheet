@@ -63,7 +63,7 @@ module.exports = env => {
       options: {
         modules: true,
         importLoaders: 1,
-        sourceMap: environmentName === 'development',
+        sourceMap: ifEnv(['development', 'staging'], true, false),
         localIdentName: ifEnv(
           'development',
           '[name]-[local]--[hash:base64:5]',
@@ -184,18 +184,18 @@ module.exports = env => {
       ],
     },
     plugins: compact([
-      new webpack.DllReferencePlugin({
+      ifEnv('development', () => new webpack.DllReferencePlugin({
         context: resolve(__dirname, 'dist'),
         manifest: require('./dist/vendor-manifest'), // eslint-disable-line global-require
-      }),
+      })),
       new HtmlWebpackPlugin({
         title: pkg.description,
         template: 'templates/index.pug',
       }),
-      new AddAssetHtmlPlugin({
+      ifEnv('development', () => new AddAssetHtmlPlugin({
         filepath: require.resolve('./dist/vendor.dll'),
-        includeSourcemap: true,
-      }),
+        includeSourcemap: ifEnv(['development', 'staging'], true),
+      })),
       new ProgressBarPlugin({
         width: 12,
         format: `[${chalk.blue(':bar')}] ${chalk.green.bold(':percent')} ${chalk.magenta(':msg')} (:elapsed seconds)`,
