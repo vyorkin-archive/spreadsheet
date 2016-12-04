@@ -1,7 +1,7 @@
 - [x] initial project structure
 - [x] fuck playground, speedup!
 - [x] webpack + latest typescript build config
-- [ ] add CI integration
+- [x] add CI integration
 - [ ] add more automation: change log generation, exact-semver, fixpack (?)
 - [ ] render basic table
 - [ ] write an example formal grammar for pegjs
