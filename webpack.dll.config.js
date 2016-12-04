@@ -2,25 +2,20 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 
 module.exports = () => ({
+  devtool: '#source-map',
   entry: {
-    vendor: [resolve(__dirname, 'vendors.js')],
+    vendor: [resolve('vendors.js')],
   },
   output: {
-    path: resolve(__dirname, 'dist'),
+    path: resolve('dist'),
     filename: '[name].dll.js',
     library: '[name]',
   },
   plugins: [
     new webpack.DllPlugin({
-      context: resolve(__dirname, 'dist'),
-      path: resolve(__dirname, 'dist', '[name]-manifest.json'),
+      context: resolve('dist'),
+      path: resolve('dist', '[name]-manifest.json'),
       name: '[name]',
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
     }),
   ],
   resolve: {

@@ -1,7 +1,0 @@
-node_modules
-tmp
-.editorconfig
-.gitignore
-.travis.yml
-CONTRIBUTING.md
-playground

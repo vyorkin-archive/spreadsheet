@@ -10,6 +10,12 @@ My little spreadsheet experiments.
 
 ## Usage
 
+```
+$ npm i
+$ npm start
+$ npm run tcm:watch
+```
+
 ### Dependencies
 
 [react-virtualized](https://github.com/bvaughn/react-virtualized)

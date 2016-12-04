@@ -2,6 +2,7 @@ dist
 coverage
 docs
 tmp
+generated
 
 node_modules
 yarn.lock

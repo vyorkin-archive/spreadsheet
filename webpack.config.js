@@ -63,7 +63,7 @@ module.exports = env => {
       options: {
         modules: true,
         importLoaders: 1,
-        sourceMap: ifEnv('development', true, false),
+        sourceMap: environmentName === 'development',
         localIdentName: ifEnv(
           'development',
           '[name]-[local]--[hash:base64:5]',
@@ -92,8 +92,8 @@ module.exports = env => {
     context: paths.src,
     devtool: ifEnv(
       ['production', 'staging'],
-      ifEnv('staging', 'source-map', false),
-      'eval-source-map'
+      ifEnv('staging', '#source-map', false),
+      '#inline-eval-cheap-source-map'
     ),
     bail: env.production,
     resolve: {
@@ -101,12 +101,7 @@ module.exports = env => {
         paths.scripts,
         'node_modules',
       ],
-      extensions: [
-        '.js', '.jsx', '.json',
-        '.ts', '.tsx',
-        '.css',
-        '.svg',
-      ],
+      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
       alias: { assets: paths.assets },
     },
     module: {
@@ -114,8 +109,7 @@ module.exports = env => {
         {
           test: /\.jsx?$/,
           enforce: 'pre',
-          loader: 'eslint',
-          include: paths.scripts,
+          loaders: 'source-map',
         },
         {
           test: /\.tsx?$/,
@@ -200,7 +194,7 @@ module.exports = env => {
       }),
       new AddAssetHtmlPlugin({
         filepath: require.resolve('./dist/vendor.dll'),
-        includeSourcemap: false,
+        includeSourcemap: true,
       }),
       new ProgressBarPlugin({
         width: 12,
@@ -212,6 +206,7 @@ module.exports = env => {
       new LodashModuleReplacementPlugin(),
       new webpack.DefinePlugin({
         __DEVELOPMENT__: environmentName === 'development',
+        __STAGING__: environmentName === 'staging',
         __PRODUCTION__: environmentName === 'production',
         __ENV__: JSON.stringify(environmentName),
         __COMMITHASH__: JSON.stringify(new GitRevisionPlugin().commithash()),

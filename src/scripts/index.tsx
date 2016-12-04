@@ -1,19 +1,22 @@
 import { AppContainer } from 'react-hot-loader';
 import * as React from 'react';
 import { render } from 'react-dom';
-import { withContext, setObservableConfig } from 'recompose';
-// import * as Rx from 'rxjs/Rx';
+import { setObservableConfig } from 'recompose';
+import * as Rx from '@reactivex/rxjs';
 
 import App from './App';
 
-// setObservableConfig({ fromESObservable: Rx.Observable.from as any });
+// TODO: fix recompose type definitions or create an issue, at least
+setObservableConfig({ fromESObservable: Rx.Observable.from as any });
 
-const getMain = () => <AppContainer><App /></AppContainer>;
+const Hot = (El: React.ReactElement<any>) => <AppContainer>{El}</AppContainer>;
+
 const rootElement = document.getElementById('root');
-render(getMain(), rootElement);
+render(Hot(<App />), rootElement);
 
 if (module.hot) {
   module.hot.accept('./App', () => {
-    render(getMain(), rootElement);
+    const NextApp = (require('./App') as any).default;
+    render(Hot(<NextApp />), rootElement);
   });
 }

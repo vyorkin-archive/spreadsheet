@@ -6,4 +6,4 @@ require('react-dom');
 require('react-addons-shallow-compare');
 require('react-virtualized');
 require('recompose');
-// require('rxjs');
+require('@reactivex/rxjs');

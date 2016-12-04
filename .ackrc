@@ -5,4 +5,5 @@
 --ignore-directory=is:coverage
 --ignore-directory=is:tmp
 --ignore-directory=is:docs
+--ignore-directory=is:generated
 --ignore-directory=is:dist
