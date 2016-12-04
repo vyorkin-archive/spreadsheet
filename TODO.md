@@ -2,6 +2,7 @@
 - [x] fuck playground, speedup!
 - [x] webpack + latest typescript build config
 - [x] add CI integration
+- [ ] add enzyme + tape + jsdom
 - [ ] add more automation: change log generation, exact-semver, fixpack (?)
 - [ ] render basic table
 - [ ] write an example formal grammar for pegjs

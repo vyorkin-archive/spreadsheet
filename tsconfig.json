@@ -16,9 +16,6 @@
     "rootDirs": [
       "src/scripts",
       "generated/css"
-    ],
-    "types": [
-      "webpack-env"
     ]
   },
   "exclude": [

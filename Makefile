@@ -12,14 +12,11 @@ dll:
 build:
 	npm run clean
 	npm run build
-
 tcm:
 	npm run tcm
-
 commit:
 	npm run commit
-
 test:
 	npm test
 
-.PHONY: start clean lint test build commit tcm
+.PHONY: start clean lint test dll build commit tcm
