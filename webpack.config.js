@@ -202,7 +202,7 @@ module.exports = env => {
         clear: true,
         summary: false,
       }),
-      new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
+      ifEnv(['production', 'staging'], () => new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' })),
       new LodashModuleReplacementPlugin(),
       new webpack.DefinePlugin({
         __DEVELOPMENT__: environmentName === 'development',
